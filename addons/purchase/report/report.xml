@@ -1,0 +1,12 @@
+<? xml version='1.0' enconding='utf-8'?>
+<odoo>
+
+	<report
+
+		id='report__card_xlx'
+		string='Report Card'
+		model='purchase'
+		report_type='xlsx'
+		name='reporte_xls'
+		file='reporte_xls'/>
+</odoo>
