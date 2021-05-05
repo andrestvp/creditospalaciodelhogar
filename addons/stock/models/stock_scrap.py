@@ -28,7 +28,7 @@ class StockScrap(models.Model):
         copy=False, readonly=True, required=True,
         states={'done': [('readonly', True)]})
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company, required=True, states={'done': [('readonly', True)]})
-    origin = fields.Char(string='Source Document')
+    origin = fields.Char(string='Source Document', default=' ', help="Motivo por cual esta dando de baja al producto")
     product_id = fields.Many2one(
         'product.product', 'Product', domain="[('type', 'in', ['product', 'consu']), '|', ('company_id', '=', False), ('company_id', '=', company_id)]",
         required=True, states={'done': [('readonly', True)]}, check_company=True)
