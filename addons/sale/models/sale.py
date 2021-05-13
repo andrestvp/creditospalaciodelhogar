@@ -845,8 +845,7 @@ Reason(s) of this behavior could be:
             'view_mode': 'form',
             'res_model': 'mail.compose.message',
             'views': [(False, 'form')],
-            'view_id': False,
-            'target': 'new',
+            'view_id': False,           'target': 'new',
             'context': ctx,
         }
 

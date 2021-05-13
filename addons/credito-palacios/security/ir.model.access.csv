@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_credito-palacios_credito-palacios,credito-palacios.credito-palacios,model_credito-palacios_credito-palacios,base.group_user,1,1,1,1
