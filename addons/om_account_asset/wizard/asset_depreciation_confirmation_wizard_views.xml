@@ -8,16 +8,16 @@
             <form string="Compute Asset">
                 <div>
                     <p>
-                        This wizard will post installment/depreciation lines for the selected month.<br/>
-                        This will generate journal entries for all related installment lines on this period of asset/revenue recognition as well.
+                        Este asistente contabilizará líneas de amortización / cuotas para el mes seleccionado.<br/>
+                        Esto generará asientos de diario para todas las líneas de cuotas relacionadas en este período de reconocimiento de activos/ ingresos también.
                     </p> 
                 </div>
                 <group>
-                    <field name="date"/>
+                    <field name="date" string="Fecha de la cuenta"/>
                 </group>
                 <footer>
-                    <button string="Generate Entries" name="asset_compute" type="object" class="btn-primary"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    <button string="Generar Entradas" name="asset_compute" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
          </field>
