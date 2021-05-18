@@ -26,7 +26,7 @@ class AccountAssetCategory(models.Model):
     method = fields.Selection([('linear', 'Lineal'), ('degressive', 'Decreciente')], string='Computation Method', required=True, default='linear',
         help="Seleccione el metodo que sueles usar para calcular el monto de las lineas de depreciacion.\n"
             "  * Lineal: Calculado sobre la base de: Valor Bruto  / Numero de Depreciaciones\n"
-            "  * Decreciente: Calculado sobre la base: Valor residual * Factor de Decremento")
+            "  * Degressive: Calculado sobre la base: Valor residual * Factor de Decremento")
     method_number = fields.Integer(string='Numero de Depreciaciones', default=5, help="El numero de depreciaciones necesarias para depreciar tus activos")
     method_period = fields.Integer(string='Periodo de Duracion', default=1, help="Indique los tiempos entre dos depreciaciones , en meses", required=True)
     method_progress_factor = fields.Float('Degressive Factor', default=0.3)
@@ -119,11 +119,11 @@ class AccountAssetAsset(models.Model):
         readonly=True, states={'draft': [('readonly', False)]}, required=True,
         help='La manera de calcular la fecha de la primera depreciacion .\n'
              '  * Basado en el ultimo dia del periodo de compra: La fecha de la depreciacion se basara en el ultimo dia del mes de la compra o del año de la compra  (Depende de la periodicidad de las depreciaciones).\n'
-             '  * Basado en la fecha de compra: La fecha de la depreciacion estara basada en la fecha de la compra.\n')
+             '  * Basado en la fecha de compra: La fecha de la dpreciacion estara basada en la fecha de la compra.\n')
     first_depreciation_manual_date = fields.Date(
         string='First Depreciation Date',
         readonly=True, states={'draft': [('readonly', False)]},
-        help='Tenga en cuenta que la fecha no altere el calculo de la primera entrada al diario en el caso del tiempo de prorrateo dela activo. Simplemente cambia la fecha de su cuenta'
+        help='Note that this date does not alter the computation of the first journal entry in case of prorata temporis assets. It simply changes iAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAts accounting date'
     )
 
     

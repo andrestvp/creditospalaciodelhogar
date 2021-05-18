@@ -26,7 +26,7 @@ class AccountAssetCategory(models.Model):
     method = fields.Selection([('linear', 'Lineal'), ('degressive', 'Decreciente')], string='Computation Method', required=True, default='linear',
         help="Seleccione el metodo que sueles usar para calcular el monto de las lineas de depreciacion.\n"
             "  * Lineal: Calculado sobre la base de: Valor Bruto  / Numero de Depreciaciones\n"
-            "  * Decreciente: Calculado sobre la base: Valor residual * Factor de Decremento")
+            "  * Degressive: Calculado sobre la base: Valor residual * Factor de Decremento")
     method_number = fields.Integer(string='Numero de Depreciaciones', default=5, help="El numero de depreciaciones necesarias para depreciar tus activos")
     method_period = fields.Integer(string='Periodo de Duracion', default=1, help="Indique los tiempos entre dos depreciaciones , en meses", required=True)
     method_progress_factor = fields.Float('Degressive Factor', default=0.3)
@@ -87,7 +87,7 @@ class AccountAssetAsset(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('open', 'Running'), ('close', 'Close')], 'Status', required=True, copy=False, default='draft',
         help="Cuando un activo es creado, el estado es 'Borrador'.\n"
             "Si se confirma el activo , el estado pasa a  'Ejecucion y las lineas de depreciacion se pueden contabilizar en la contabilidad' .\n"
-            "Puede cerrar manualmente un activo cuando finaliza la depreciacion. Si se registra la ultima linea de depreciacion, el activo pasa automaticamente a ese estado .")
+            "Puede cerrar manualmente un activo cuando finaliza la dpreciacion. Si se registra la ultima linea de depreciacion, el activo pasa automaticamente a ese estado .")
     active = fields.Boolean(default=True)
     partner_id = fields.Many2one('res.partner', string='Partner', readonly=True, states={'draft': [('readonly', False)]})
     method = fields.Selection([('linear', 'Lineal'), ('degressive', 'Decreciente')], string='Computation Method', required=True, readonly=True, states={'draft': [('readonly', False)]}, default='linear',
@@ -95,19 +95,19 @@ class AccountAssetAsset(models.Model):
             "  * Decreciente: Calculado sobre la base de : Valor Residual * Factor de Decremento")
     method_number = fields.Integer(string='Numbers of Depreciations', readonly=True, states={'draft': [('readonly', False)]}, default=5, help="El  numero de depreciaciones necesarias para depreciar tus activos")
     method_period = fields.Integer(string='Number of Months in a Period', required=True, readonly=True, default=12, states={'draft': [('readonly', False)]},
-        help="La cantidad de tiempo entre dos depreciaciones, en meses")
+        help="The amount of time between two depreciations, in months")
     method_end = fields.Date(string='Ending Date', readonly=True, states={'draft': [('readonly', False)]})
     method_progress_factor = fields.Float(string='Degressive Factor', readonly=True, default=0.3, states={'draft': [('readonly', False)]})
     value_residual = fields.Float(compute='_amount_residual', digits=0, string='Residual Value')
     method_time = fields.Selection([('number', 'Number of Entries'), ('end', 'Ending Date')], string='Time Method', required=True, readonly=True, default='number', states={'draft': [('readonly', False)]},
-        help="Seleccione el metodo que sueles usar para calcular las fechas y numeros de entrada.\n"
-             "  * Numero de entradas: Fija el numero de entradas y el tiempo entre dos depreciaciones.\n"
-             "  * Fecha de Finalizacion: Seleccione el tiempo entre dos depreciaciones y la fecha de depreciacion no se ira mas alla.")
+        help="ELige el metodo que sueles usar para calcular la fecha y numero de entradas.\n"
+            : Fix the number of entries and the time between 2 depreciations.\n"
+             "  * Ending Date: Choose the time between 2 depreciations and the date the depreciations won't go beyond.")
     prorata = fields.Boolean(string='Prorata Temporis', readonly=True, states={'draft': [('readonly', False)]},
-        help='Indica que la primera entrada de depreciacion para este activo debe realizarse a partir de la fecha del activo (Fecha de Compra) en lugar del primero de enero / Fecha de inicio de año fiscal')
+        help='Indicates that the first depreciation entry for this asset have to be done from the asset date (purchase date) instead of the first January / Start date of fiscal year')
     depreciation_line_ids = fields.One2many('account.asset.depreciation.line', 'asset_id', string='Depreciation Lines', readonly=True, states={'draft': [('readonly', False)], 'open': [('readonly', False)]})
     salvage_value = fields.Float(string='Salvage Value', digits=0, readonly=True, states={'draft': [('readonly', False)]},
-        help="Es la cantidad que planea tener que no puede depreciar.")
+        help="It is the amount you plan to have that you cannot depreciate.")
     invoice_id = fields.Many2one('account.move', string='Invoice', states={'draft': [('readonly', False)]}, copy=False)
     type = fields.Selection(related="category_id.type", string='Type', required=True)
     account_analytic_id = fields.Many2one('account.analytic.account', string='Analytic Account')
@@ -117,13 +117,13 @@ class AccountAssetAsset(models.Model):
         ('manual', 'Manual')],
         string='Depreciation Dates', default='manual',
         readonly=True, states={'draft': [('readonly', False)]}, required=True,
-        help='La manera de calcular la fecha de la primera depreciacion .\n'
-             '  * Basado en el ultimo dia del periodo de compra: La fecha de la depreciacion se basara en el ultimo dia del mes de la compra o del año de la compra  (Depende de la periodicidad de las depreciaciones).\n'
-             '  * Basado en la fecha de compra: La fecha de la depreciacion estara basada en la fecha de la compra.\n')
+        help='The way to compute the date of the first depreciation.\n'
+             '  * Based on last day of purchase period: The depreciation dates will be based on the last day of the purchase month or the purchase year (depending on the periodicity of the depreciations).\n'
+             '  * Based on purchase date: The depreciation dates will be based on the purchase date.\n')
     first_depreciation_manual_date = fields.Date(
         string='First Depreciation Date',
         readonly=True, states={'draft': [('readonly', False)]},
-        help='Tenga en cuenta que la fecha no altere el calculo de la primera entrada al diario en el caso del tiempo de prorrateo dela activo. Simplemente cambia la fecha de su cuenta'
+        help='Note that this date does not alter the computation of the first journal entry in case of prorata temporis assets. It simply changes its accounting date'
     )
 
     

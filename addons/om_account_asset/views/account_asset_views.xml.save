@@ -12,17 +12,17 @@
                             <label for="name" string="Tipo de Activo" class="oe_edit_only" attrs="{'invisible': [('type','!=','purchase')]}"/>
                             <label for="name" string="Deferred Revenue Type" class="oe_edit_only" attrs="{'invisible': [('type','==','purchase')]}"/>
                             <h1>
-                                <field name="name" string="Tipo"/>
+                                <field name="name" string="Título"/>
                             </h1>
                         </div>
                         <group>
                             <field name="type" attrs="{'invisible': 1}"/>
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
-                        <group string="Entradas de Diario">
-                            <field name="journal_id" string="Diario"/>
+                        <group string="Journal Entries">
+                            <field name="journal_id"/>
                             <div>
-                                <label for="account_asset_id" string="Cuenta de Activos"
+                                <label for="account_asset_id"
                                        attrs="{'invisible': [('type','!=','purchase')]}"
                                        style="font-weight: bold" class="o_light_label"/>
                                 <label for="account_asset_id" string="Deferred Revenue Account"
@@ -31,7 +31,7 @@
                             </div>
                             <field name="account_asset_id" nolabel="1" attrs="{'invisible': [('type','=', False)]}"/>
                             <div>
-                                <label for="account_depreciation_id" string="Asientos de Depreciación: Cuenta de Activos"
+                                <label for="account_depreciation_id"
                                        attrs="{'invisible': [('type','!=','purchase')]}"
                                        style="font-weight: bold" class="o_light_label"/>
                                 <label for="account_depreciation_id" string="Recognition Income Account"
@@ -40,7 +40,7 @@
                             </div>
                             <field name="account_depreciation_id" nolabel="1"/>
                             <div>
-                                <label for="account_depreciation_expense_id" string="Asientos de Depreciación: Cuenta de Gastos"
+                                <label for="account_depreciation_expense_id"
                                        attrs="{'invisible': [('type','!=','purchase')]}"
                                        style="font-weight: bold" class="o_light_label"/>
                                 <label for="account_depreciation_expense_id" string="Recognition Account"
@@ -48,30 +48,30 @@
                                        style="font-weight: bold" class="o_light_label"/>
                             </div>
                             <field name="account_depreciation_expense_id" nolabel="1"/>
-                            <field name="account_analytic_id" string="Sucursal" groups="analytic.group_analytic_accounting"/>
-                            <field name="analytic_tag_ids" string="Etiquetas"  groups="analytic.group_analytic_accounting" widget="many2many_tags"/>
+                            <field name="account_analytic_id" groups="analytic.group_analytic_accounting"/>
+                            <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting" widget="many2many_tags"/>
                         </group>
-                        <group string="Periodicidad">
-                            <field name="method_time" string="Método de Tiempo basado en" widget="radio" attrs="{'invisible': [('type','!=','purchase')]}"/>
-                            <field name="method_number" string="Número de Entradas"
+                        <group string="Periodicity">
+                            <field name="method_time" string="Time Method Based On" widget="radio" attrs="{'invisible': [('type','!=','purchase')]}"/>
+                            <field name="method_number" string="Number of Entries"
                                    attrs="{'invisible':['|',('method_time','!=','number'), ('type','=', False)],
                                     'required':[('method_time','=','number')]}"/>
-                            <label for="method_period" string="Una entrada cada"/>
+                            <label for="method_period" string="One Entry Every"/>
                             <div>
                                 <field name="method_period" nolabel="1" attrs="{'invisible': [('type','=', False)]}" class="oe_inline"/>
-                                meses
+                                months
                             </div>
                             <field name="method_end" attrs="{'required': [('method_time','=','end')], 'invisible':[('method_time','!=','end')]}"/>
                         </group>
-                        <group string="Opciones Adicionales">
-                            <field name="open_asset" string="Activos de Confirmación Automática" />
-                            <field name="group_entries" string="Entrada de Diario de Grupo"/>
-                            <field name="date_first_depreciation" string="Fecha de Depreciación"/>
+                        <group string="Additional Options">
+                            <field name="open_asset"/>
+                            <field name="group_entries"/>
+                            <field name="date_first_depreciation"/>
                         </group>
-                        <group attrs="{'invisible': [('type','=','sale')]}" string="Método de Depreciación">
-                            <field name="method" widget="radio" string="Método"/>
+                        <group attrs="{'invisible': [('type','=','sale')]}" string="Depreciation Method">
+                            <field name="method" widget="radio"/>
                             <field name="method_progress_factor" attrs="{'invisible':[('method','=','linear')], 'required':[('method','=','degressive')]}"/>
-                            <field name="prorata" string="Tiempo de Prorrateo" attrs="{'invisible': [('method_time','=','end')]}"/>
+                            <field name="prorata" attrs="{'invisible': [('method_time','=','end')]}"/>
                         </group>
                     </group>
                 </sheet>
@@ -141,11 +141,11 @@
         <field name="arch" type="xml">
             <form string="Asset">
                 <header>
-                    <button name="validate" states="draft" string="Confirmar" type="object" class="oe_highlight"/>
-                    <button type="object" name="compute_depreciation_board" string="Calcular Depreciación" states="draft"/>
-                    <button name="set_to_close" states="open" string="Vender o Disponer" type="object" class="oe_highlight"/>
-                    <button name="set_to_draft" string="Poner en Borrador" type="object" attrs="{'invisible': ['|', ('entry_count', '!=', 0), ('state', '!=', 'open')]}"/>
-                    <button name="%(action_asset_modify)d" states="open" string="Modificar Depreciación" type="action"/>
+                    <button name="validate" states="draft" string="Confirm" type="object" class="oe_highlight"/>
+                    <button type="object" name="compute_depreciation_board" string="Compute Depreciation" states="draft"/>
+                    <button name="set_to_close" states="open" string="Sell or Dispose" type="object" class="oe_highlight"/>
+                    <button name="set_to_draft" string="Set to Draft" type="object" attrs="{'invisible': ['|', ('entry_count', '!=', 0), ('state', '!=', 'open')]}"/>
+                    <button name="%(action_asset_modify)d" states="open" string="Modify Depreciation" type="action"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,open"/>
                 </header>
                 <sheet>
@@ -155,43 +155,43 @@
                         </button>
                     </div>
                     <div class="oe_title">
-                        <label for="name" string="Título"  class="oe_edit_only"/>
+                        <label for="name" class="oe_edit_only"/>
                         <h1>
-                            <field name="name" string="Título" />
+                            <field name="name" placeholder="e.g. Laptop iBook"/>
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="category_id" string="Tipo de Activo" domain="[('type', '=', 'purchase')]" context="{'default_type': 'purchase'}" help="Category of asset"/>
-                            <field name="code" string="Referencia"/>
-                            <field name="date" help="Fecha" string="Fecha"/>
-                            <field name="date_first_depreciation" string="Tipo de Depreciación"/>
-                            <field name="first_depreciation_manual_date" string="Primera fecha de Depreciación"
+                            <field name="category_id" string="Asset Category" domain="[('type', '=', 'purchase')]" context="{'default_type': 'purchase'}" help="Category of asset"/>
+                            <field name="code"/>
+                            <field name="date" help="Date of asset"/>
+                            <field name="date_first_depreciation"/>
+                            <field name="first_depreciation_manual_date"
                                    attrs="{'invisible': [('date_first_depreciation', '!=', 'manual')], 'required': [('date_first_depreciation', '=', 'manual')]}"/>
                             <field name="type" invisible="1"/>
-                            <field name="account_analytic_id" string="Sucursal" groups="analytic.group_analytic_accounting" />
+                            <field name="account_analytic_id" groups="analytic.group_analytic_accounting" />
                         </group>
                         <group>
                             <field name="currency_id" groups="base.group_multi_currency"/>
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
-                            <field name="value" string="Valor Bruto"  widget="monetary" options="{'currency_field': 'currency_id'}" help="Gross value of asset"/>
-                            <field name="salvage_value" string="Valor de Rescate"  widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('type','=','sale')]}"/>
-                            <field name="value_residual" string="Valor Residual"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="partner_id" string="Vendedor" widget="res_partner_many2one"
+                            <field name="value" widget="monetary" options="{'currency_field': 'currency_id'}" help="Gross value of asset"/>
+                            <field name="salvage_value" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('type','=','sale')]}"/>
+                            <field name="value_residual" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="partner_id" string="Vendor" widget="res_partner_many2one"
                                    context="{'res_partner_search_mode': 'supplier'}"/>
-                            <field name="invoice_id" string="Factura" options="{'no_create': True}"/>
-                            <field name="analytic_tag_ids" string="Etiqueta"  groups="analytic.group_analytic_accounting" widget="many2many_tags"/>
+                            <field name="invoice_id" string="Invoice" options="{'no_create': True}"/>
+                            <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting" widget="many2many_tags"/>
                         </group>
                     </group>
                     <notebook colspan="4">
-                        <page string="Tablero de Depreciación">
+                        <page string="Depreciation Board">
                             <field name="depreciation_line_ids" mode="tree" options="{'reload_whole_on_button': true}">
                                 <tree string="Depreciation Lines" decoration-info="(move_check == False)" create="false">
-                                    <field name="depreciation_date" string="Fecha de Depreciación" />
-                                    <field name="amount" widget="monetary" string="Depreciación"/>
-                                    <field name="depreciated_value" string="Depreciación Acumulada" readonly="1"/>
+                                    <field name="depreciation_date"/>
+                                    <field name="amount" widget="monetary" string="Depreciation"/>
+                                    <field name="depreciated_value" readonly="1"/>
                                     <field name="remaining_value" readonly="1" widget="monetary" string="Residual"/>
-                                    <field name="move_check" string="Vinculada"  widget="deprec_lines_toggler" attrs="{'invisible': [('parent_state', '!=', 'open')]}"/>
+                                    <field name="move_check" widget="deprec_lines_toggler" attrs="{'invisible': [('parent_state', '!=', 'open')]}"/>
                                     <field name="move_posted_check" invisible="1"/>
                                     <field name="parent_state" invisible="1"/>
                                 </tree>
@@ -215,16 +215,16 @@
                                 </form>
                             </field>
                         </page>
-                        <page string="Información de Depreciación">
+                        <page string="Depreciation Information">
                             <group>
-                                <field name="method" string="Método" widget="radio" attrs="{'invisible': [('type','=','sale')]}"/>
+                                <field name="method" widget="radio" attrs="{'invisible': [('type','=','sale')]}"/>
                                 <field name="method_progress_factor" attrs="{'invisible':[('method','=','linear')], 'required':[('method','=','degressive')]}"/>
-                                <field name="method_time" string="Método de Tiempo Basado en" widget="radio" attrs="{'invisible': [('type','!=','purchase')]}"/>
-                                <field name="prorata" string="Tiempo de Prorrateo"  attrs="{'invisible': [('method_time','=','end')]}"/>
+                                <field name="method_time" string="Time Method Based On" widget="radio" attrs="{'invisible': [('type','!=','purchase')]}"/>
+                                <field name="prorata" attrs="{'invisible': [('method_time','=','end')]}"/>
                             </group>
                             <group>
-                                <field name="method_number" string="Número de Depreciaciones"  attrs="{'invisible':[('method_time','=','end')], 'required':[('method_time','=','number')]}"/>
-                                <field name="method_period" string="Número de meses en un período"/>
+                                <field name="method_number" attrs="{'invisible':[('method_time','=','end')], 'required':[('method_time','=','number')]}"/>
+                                <field name="method_period"/>
                                 <field name="method_end" attrs="{'required': [('method_time','=','end')], 'invisible':[('method_time','=','number')]}"/>
                             </group>
                         </page>
@@ -280,15 +280,15 @@
         <field name="model">account.asset.asset</field>
         <field name="arch" type="xml">
             <tree string="Assets" decoration-info="(state == 'draft')" decoration-muted="(state == 'close')">
-                <field name="name" string="Referencia"/>
-                <field name="category_id" string="Categoría de Activo"/>
-                <field name="date" string="Fecha"/>
-                <field name="partner_id" string="Vendedor"/>
-                <field name="value" string="Valor Bruto"/>
-                <field name="value_residual" string="Valor Residual" widget="monetary"/>
+                <field name="name"/>
+                <field name="category_id" string="Asset Category"/>
+                <field name="date"/>
+                <field name="partner_id" string="Vendor"/>
+                <field name="value"/>
+                <field name="value_residual" widget="monetary"/>
                 <field name="currency_id" groups="base.group_multi_currency"/>
                 <field name="company_id" groups="base.group_multi_company"/>
-                <field name="state" string="Estado"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>

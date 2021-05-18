@@ -803,10 +803,11 @@
             <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a new quotation, the first step of a new sale!
+		    Créditos Palacio del Hogar
+                    Crear una nueva cotización, el primer paso de una nueva venta. 
                 </p><p>
-                    Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
-                </p>
+	            Una vez confirmada la cotización, se convierte en una orden de venta.
+                   </p>
             </field>
         </record>
 
