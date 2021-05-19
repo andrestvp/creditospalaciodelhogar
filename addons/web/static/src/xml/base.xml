@@ -1674,7 +1674,7 @@
 </t>
 <t t-name="M2ODialog">
     <div>
-        Do you want to create <strong t-esc="widget.value"/> as a new <t t-esc="widget.name"/>?
+        Do you want to create <strong t-esc="widget.value"/> como nuevo <t t-esc="widget.name"/>?
     </div>
 </t>
 <t t-name="FieldMany2ManyCheckBoxes">
