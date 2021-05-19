@@ -30,7 +30,7 @@ class AccountAssetCategory(models.Model):
     method_number = fields.Integer(string='Numero de Depreciaciones', default=5, help="El numero de depreciaciones necesarias para depreciar tus activos")
     method_period = fields.Integer(string='Periodo de Duracion', default=1, help="Indique los tiempos entre dos depreciaciones , en meses", required=True)
     method_progress_factor = fields.Float('Degressive Factor', default=0.3)
-    method_time = fields.Selection([('number', 'Num'), ('end', 'Ending Date')], string='Time Method', required=True, default='number',
+    method_time = fields.Selection([('number', 'Número de Entrada'), ('end', 'Fecha de finalización')], string='Time Method', required=True, default='number',
         help="El numero de depreciaciones necesarias para depreciar tus activos.\n"
            "  * Numero de entradas: Fija el numero de entradas y el tiempo entre dos depreciaciones..\n"
            "  * Fecha de finalizacion. Selecciona el tiempo entre dos depreciaciones y la fecha de la depreciacion no se iran mas alla.")
@@ -99,7 +99,7 @@ class AccountAssetAsset(models.Model):
     method_end = fields.Date(string='Ending Date', readonly=True, states={'draft': [('readonly', False)]})
     method_progress_factor = fields.Float(string='Degressive Factor', readonly=True, default=0.3, states={'draft': [('readonly', False)]})
     value_residual = fields.Float(compute='_amount_residual', digits=0, string='Residual Value')
-    method_time = fields.Selection([('number', 'Number of Entries'), ('end', 'Ending Date')], string='Time Method', required=True, readonly=True, default='number', states={'draft': [('readonly', False)]},
+    method_time = fields.Selection([('number', 'Número de Entradas'), ('end', 'Fecha de Finalización')], string='Time Method', required=True, readonly=True, default='number', states={'draft': [('readonly', False)]},
         help="Seleccione el metodo que sueles usar para calcular las fechas y numeros de entrada.\n"
              "  * Numero de entradas: Fija el numero de entradas y el tiempo entre dos depreciaciones.\n"
              "  * Fecha de Finalizacion: Seleccione el tiempo entre dos depreciaciones y la fecha de depreciacion no se ira mas alla.")
@@ -113,7 +113,7 @@ class AccountAssetAsset(models.Model):
     account_analytic_id = fields.Many2one('account.analytic.account', string='Analytic Account')
     analytic_tag_ids = fields.Many2many('account.analytic.tag', string='Analytic Tag')
     date_first_depreciation = fields.Selection([
-        ('last_day_period', 'Based on Last Day of Purchase Period'),
+        ('last_day_period', 'Basado en el último período de compra'),
         ('manual', 'Manual')],
         string='Depreciation Dates', default='manual',
         readonly=True, states={'draft': [('readonly', False)]}, required=True,
