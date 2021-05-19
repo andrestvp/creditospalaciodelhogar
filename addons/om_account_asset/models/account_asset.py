@@ -27,10 +27,10 @@ class AccountAssetCategory(models.Model):
         help="Seleccione el metodo que sueles usar para calcular el monto de las lineas de depreciacion.\n"
             "  * Lineal: Calculado sobre la base de: Valor Bruto  / Numero de Depreciaciones\n"
             "  * Decreciente: Calculado sobre la base: Valor residual * Factor de Decremento")
-    method_number = fields.Integer(string='Numero de Depreciaciones', default=5, help="El numero de depreciaciones necesarias para depreciar tus activos")
-    method_period = fields.Integer(string='Periodo de Duracion', default=1, help="Indique los tiempos entre dos depreciaciones , en meses", required=True)
+    method_number = fields.Integer(string='Number of Depreciations', default=5, help="El numero de depreciaciones necesarias para depreciar tus activos")
+    method_period = fields.Integer(string='Period Length', default=1, help="Indique los tiempos entre dos depreciaciones , en meses", required=True)
     method_progress_factor = fields.Float('Degressive Factor', default=0.3)
-    method_time = fields.Selection([('number', 'Num'), ('end', 'Ending Date')], string='Time Method', required=True, default='number',
+    method_time = fields.Selection([('number', 'Número de Entradas'), ('end', 'Fecha de Finalización')], string='Time Method', required=True, default='number',
         help="El numero de depreciaciones necesarias para depreciar tus activos.\n"
            "  * Numero de entradas: Fija el numero de entradas y el tiempo entre dos depreciaciones..\n"
            "  * Fecha de finalizacion. Selecciona el tiempo entre dos depreciaciones y la fecha de la depreciacion no se iran mas alla.")
@@ -93,7 +93,7 @@ class AccountAssetAsset(models.Model):
     method = fields.Selection([('linear', 'Lineal'), ('degressive', 'Decreciente')], string='Computation Method', required=True, readonly=True, states={'draft': [('readonly', False)]}, default='linear',
         help="Elegir el metodo que se utilizara para calcular el monto de la depreciacion.\n  * Lineal: Calculado sobre la base de: Valor de Bruta / Numero de Depreciaciones\n"
             "  * Decreciente: Calculado sobre la base de : Valor Residual * Factor de Decremento")
-    method_number = fields.Integer(string='Numbers of Depreciations', readonly=True, states={'draft': [('readonly', False)]}, default=5, help="El  numero de depreciaciones necesarias para depreciar tus activos")
+    method_number = fields.Integer(string='Number of Depreciations', readonly=True, states={'draft': [('readonly', False)]}, default=5, help="El  numero de depreciaciones necesarias para depreciar tus activos")
     method_period = fields.Integer(string='Number of Months in a Period', required=True, readonly=True, default=12, states={'draft': [('readonly', False)]},
         help="La cantidad de tiempo entre dos depreciaciones, en meses")
     method_end = fields.Date(string='Ending Date', readonly=True, states={'draft': [('readonly', False)]})
