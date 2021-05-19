@@ -7,29 +7,29 @@
         <field name="arch" type="xml">
             <form string="Modify Asset">
                 <field name="asset_method_time" invisible="1"/>
-                <group string="Asset Durations to Modify" col="4">
+                <group string="Duraciones de Activos para modificar" col="4">
                     <group colspan="2" col="2">
-                	    <field name="name"/>
-                        <field name="method_number" attrs="{'invisible': [('asset_method_time', '=', 'end')]}"/>
+                	    <field name="name" string="Razón"/>
+                        <field name="method_number" string="Número de Depreciaciones" attrs="{'invisible': [('asset_method_time', '=', 'end')]}"/>
                     </group>
                     <group colspan="2" col="2">
                         <field name="method_end" attrs="{'invisible': [('asset_method_time', '=', 'number')]}"/>
-                        <label for="method_period"/>
+                        <label for="method_period" string="Duración del Período"/>
                         <div>
-                            <field name="method_period" class="oe_inline"/> months
+                            <field name="method_period" class="oe_inline"/> meses
                         </div>	                        
                     </group>
                 </group>
                 <footer>
-                    <button name="modify" string="Modify" type="object" class="btn-primary"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    <button name="modify" string="Modificar" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
     
     <record id="action_asset_modify" model="ir.actions.act_window">
-         <field name="name">Modify Asset</field>
+         <field name="name">Modificar de Depreciación</field>
          <field name="res_model">asset.modify</field>
          <field name="type">ir.actions.act_window</field>
          <field name="view_mode">tree,form</field>
