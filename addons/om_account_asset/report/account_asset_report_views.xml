@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <pivot string="Assets Analysis" disable_linking="True">
                 <field name="asset_category_id" type="row"/>
-                <field name="gross_value" type="measure"/>
-                <field name="unposted_value" type="measure"/>
+                <field name="gross_value" type="measure" string="Cantidad Bruta"/>
+                <field name="unposted_value" type="measure" string="Cantidad No Contabilizada"/>
             </pivot>
         </field>
     </record>
@@ -19,8 +19,8 @@
         <field name="arch" type="xml">
             <graph string="Assets Analysis">
                 <field name="asset_category_id" type="row"/>
-                <field name="gross_value" type="measure"/>
-                <field name="unposted_value" type="measure"/>
+                <field name="gross_value" type="measure" string="Cantidad Bruta"/>
+                <field name="unposted_value" type="measure" string="Cantidad No Contabilizada"/>
             </graph>
         </field>
     </record>
@@ -32,10 +32,10 @@
             <search string="Assets Analysis">
                 <field name="date"/>
                 <field name="depreciation_date"/>
-                <filter string="Draft" name="draft" domain="[('state','=','draft')]" help="Assets in draft state"/>
-                <filter string="Running" name="running" domain="[('state','=','open')]" help="Assets in running state"/>
+                <filter string="Borrador" name="draft" domain="[('state','=','draft')]" help="Assets in draft state"/>
+                <filter string="Ejecución" name="running" domain="[('state','=','open')]" help="Assets in running state"/>
                 <separator/>
-                <filter string="Posted" name="posted" domain="[('move_check','=',True)]" help="Posted depreciation lines" context="{'unposted_value_visible': 0}"/>
+                <filter string="Publicado" name="posted" domain="[('move_check','=',True)]" help="Posted depreciation lines" context="{'unposted_value_visible': 0}"/>
                 <field name="asset_id"/>
                 <field name="asset_category_id"/>
                 <group expand="0" string="Extended Filters...">
@@ -43,13 +43,13 @@
                     <field name="company_id" groups="base.group_multi_company"/>
                 </group>
                 <group expand="1" string="Group By">
-                    <filter string="Asset" name="asset" context="{'group_by':'asset_id'}"/>
-                    <filter string="Asset Category" name="asset_category" context="{'group_by':'asset_category_id'}"/>
-                    <filter string="Company" name="company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                    <filter string="Depreciaciones" name="asset" context="{'group_by':'asset_id'}"/>
+                    <filter string="Categoría de Activo" name="asset_category" context="{'group_by':'asset_category_id'}"/>
+                    <filter string="Compañia" name="company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
                     <separator/>
-                    <filter string="Purchase Month" name="purchase_month" help="Date of asset purchase"
+                    <filter string="Mes de Compra" name="purchase_month" help="Date of asset purchase"
                         context="{'group_by':'date:month'}"/>
-                    <filter string="Depreciation Month" name="deprecation_month" help="Date of depreciation"
+                    <filter string="Mes de Depreciación" name="deprecation_month" help="Fecha de Depreciación"
                         context="{'group_by':'depreciation_date:month'}"/>
                 </group>
             </search>
@@ -57,7 +57,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_asset_asset_report">
-        <field name="name">Assets Analysis</field>
+        <field name="name">Análisis</field>
         <field name="res_model">asset.asset.report</field>
         <field name="view_mode">graph,pivot</field>
         <field name="search_view_id" ref="view_asset_asset_report_search"/>
@@ -73,7 +73,7 @@
         </field>
     </record>
     
-    <menuitem name="Assets"
+    <menuitem name="Amortizaciones"
               action="action_asset_asset_report"
               id="menu_action_asset_asset_report"
               parent="account.account_reports_management_menu"

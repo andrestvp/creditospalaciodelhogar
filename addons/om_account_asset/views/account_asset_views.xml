@@ -31,7 +31,7 @@
                             </div>
                             <field name="account_asset_id" nolabel="1" attrs="{'invisible': [('type','=', False)]}"/>
                             <div>
-                                <label for="account_depreciation_id" string="Asientos de Depreciación: Cuenta de Activos"
+                                <label for="account_depreciation_id" string="Asientos de Amortización: Cuenta de Activos"
                                        attrs="{'invisible': [('type','!=','purchase')]}"
                                        style="font-weight: bold" class="o_light_label"/>
                                 <label for="account_depreciation_id" string="Recognition Income Account"
@@ -40,7 +40,7 @@
                             </div>
                             <field name="account_depreciation_id" nolabel="1"/>
                             <div>
-                                <label for="account_depreciation_expense_id" string="Asientos de Depreciación: Cuenta de Gastos"
+                                <label for="account_depreciation_expense_id" string="Asientos de Amortización: Cuenta de Gastos"
                                        attrs="{'invisible': [('type','!=','purchase')]}"
                                        style="font-weight: bold" class="o_light_label"/>
                                 <label for="account_depreciation_expense_id" string="Recognition Account"
@@ -66,9 +66,9 @@
                         <group string="Opciones Adicionales">
                             <field name="open_asset" string="Activos de Confirmación Automática" />
                             <field name="group_entries" string="Entrada de Diario de Grupo"/>
-                            <field name="date_first_depreciation" string="Fecha de Depreciación"/>
+                            <field name="date_first_depreciation" string="Fecha de Amortización"/>
                         </group>
-                        <group attrs="{'invisible': [('type','=','sale')]}" string="Método de Depreciación">
+                        <group attrs="{'invisible': [('type','=','sale')]}" string="Método de Amortización">
                             <field name="method" widget="radio" string="Método"/>
                             <field name="method_progress_factor" attrs="{'invisible':[('method','=','linear')], 'required':[('method','=','degressive')]}"/>
                             <field name="prorata" string="Tiempo de Prorrateo" attrs="{'invisible': [('method_time','=','end')]}"/>
@@ -142,10 +142,10 @@
             <form string="Asset">
                 <header>
                     <button name="validate" states="draft" string="Confirmar" type="object" class="oe_highlight"/>
-                    <button type="object" name="compute_depreciation_board" string="Calcular Depreciación" states="draft"/>
+                    <button type="object" name="compute_depreciation_board" string="Calcular Amortización" states="draft"/>
                     <button name="set_to_close" states="open" string="Vender o Disponer" type="object" class="oe_highlight"/>
                     <button name="set_to_draft" string="Poner en Borrador" type="object" attrs="{'invisible': ['|', ('entry_count', '!=', 0), ('state', '!=', 'open')]}"/>
-                    <button name="%(action_asset_modify)d" states="open" string="Modificar Depreciación" type="action"/>
+                    <button name="%(action_asset_modify)d" states="open" string="Modificar Amortización" type="action"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,open"/>
                 </header>
                 <sheet>
@@ -165,8 +165,8 @@
                             <field name="category_id" string="Tipo de Activo" domain="[('type', '=', 'purchase')]" context="{'default_type': 'purchase'}" help="Category of asset"/>
                             <field name="code" string="Referencia"/>
                             <field name="date" help="Fecha" string="Fecha"/>
-                            <field name="date_first_depreciation" string="Tipo de Depreciación"/>
-                            <field name="first_depreciation_manual_date" string="Primera fecha de Depreciación"
+                            <field name="date_first_depreciation" string="Tipo de Amortización"/>
+                            <field name="first_depreciation_manual_date" string="Primera fecha de Amortización"
                                    attrs="{'invisible': [('date_first_depreciation', '!=', 'manual')], 'required': [('date_first_depreciation', '=', 'manual')]}"/>
                             <field name="type" invisible="1"/>
                             <field name="account_analytic_id" string="Sucursal" groups="analytic.group_analytic_accounting" />
@@ -174,7 +174,7 @@
                         <group>
                             <field name="currency_id" groups="base.group_multi_currency"/>
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
-                            <field name="value" string="Valor Bruto"  widget="monetary" options="{'currency_field': 'currency_id'}" help="Gross value of asset"/>
+                            <field name="value" string="Valor Bruto"  widget="monetary" options="{'currency_field': 'currency_id'}" help="Valor bruto del activo"/>
                             <field name="salvage_value" string="Valor de Rescate"  widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('type','=','sale')]}"/>
                             <field name="value_residual" string="Valor Residual"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="partner_id" string="Vendedor" widget="res_partner_many2one"
@@ -184,12 +184,12 @@
                         </group>
                     </group>
                     <notebook colspan="4">
-                        <page string="Tablero de Depreciación">
+                        <page string="Tablero de Amortización">
                             <field name="depreciation_line_ids" mode="tree" options="{'reload_whole_on_button': true}">
                                 <tree string="Depreciation Lines" decoration-info="(move_check == False)" create="false">
-                                    <field name="depreciation_date" string="Fecha de Depreciación" />
-                                    <field name="amount" widget="monetary" string="Depreciación"/>
-                                    <field name="depreciated_value" string="Depreciación Acumulada" readonly="1"/>
+                                    <field name="depreciation_date" string="Fecha de Amortización" />
+                                    <field name="amount" widget="monetary" string="Amortización"/>
+                                    <field name="depreciated_value" string="Amortización Acumulada" readonly="1"/>
                                     <field name="remaining_value" readonly="1" widget="monetary" string="Residual"/>
                                     <field name="move_check" string="Vinculada"  widget="deprec_lines_toggler" attrs="{'invisible': [('parent_state', '!=', 'open')]}"/>
                                     <field name="move_posted_check" invisible="1"/>
@@ -199,23 +199,23 @@
                                     <group>
                                         <group>
                                             <field name="parent_state" invisible="1"/>
-                                            <field name="name" string="Nombre de Depreciación"/>
+                                            <field name="name" string="Nombre de Amortización"/>
                                             <field name="sequence" string="Secuencia"/>
-                                            <field name="move_id" string="Entrada de Depreciación"/>
+                                            <field name="move_id" string="Entrada de Amortización"/>
                                             <field name="move_check" string="Vinculado"/>
                                             <field name="parent_state" invisible="1"/>
                                         </group>
                                         <group>
-                                            <field name="amount" widget="monetary" string="Depreciación Actual"/>
-                                            <field name="depreciation_date" string="Fecha de Depreciación"/>
-                                            <field name="depreciated_value" string="Depreciación Acumulada"/>
-                                            <field name="remaining_value" string="Depreciación del siguiente período"/>
+                                            <field name="amount" widget="monetary" string="Amortización Actual"/>
+                                            <field name="depreciation_date" string="Fecha de Amortización"/>
+                                            <field name="depreciated_value" string="Amortización Acumulada"/>
+                                            <field name="remaining_value" string="Amortización del siguiente período"/>
                                         </group>
                                     </group>
                                 </form>
                             </field>
                         </page>
-                        <page string="Información de Depreciación">
+                        <page string="Información de Amortización">
                             <group>
                                 <field name="method" string="Método" widget="radio" attrs="{'invisible': [('type','=','sale')]}"/>
                                 <field name="method_progress_factor" attrs="{'invisible':[('method','=','linear')], 'required':[('method','=','degressive')]}"/>
@@ -223,7 +223,7 @@
                                 <field name="prorata" string="Tiempo de Prorrateo"  attrs="{'invisible': [('method_time','=','end')]}"/>
                             </group>
                             <group>
-                                <field name="method_number" string="Número de Depreciaciones"  attrs="{'invisible':[('method_time','=','end')], 'required':[('method_time','=','number')]}"/>
+                                <field name="method_number" string="Número de Amortizaciones"  attrs="{'invisible':[('method_time','=','end')], 'required':[('method_time','=','number')]}"/>
                                 <field name="method_period" string="Número de meses en un período"/>
                                 <field name="method_end" attrs="{'required': [('method_time','=','end')], 'invisible':[('method_time','=','number')]}"/>
                             </group>
@@ -315,7 +315,7 @@
 
 
     <record model="ir.actions.act_window" id="action_account_asset_asset_form">
-        <field name="name">Assets</field>
+        <field name="name">Amortizaciones</field>
         <field name="res_model">account.asset.asset</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="view_id" ref="view_account_asset_asset_purchase_tree"/>
@@ -330,7 +330,7 @@
     <menuitem id="menu_finance_config_assets" name="Assets and Revenues" parent="account.menu_finance_configuration" sequence="25"/>
 
     <record model="ir.actions.act_window" id="action_account_asset_asset_list_normal_purchase">
-        <field name="name">Asset Types</field>
+        <field name="name">Tipos de Activos</field>
         <field name="res_model">account.asset.category</field>
         <field name="domain">[('type', '=', 'purchase')]</field>
         <field name="view_mode">tree,kanban,form</field>
