@@ -143,6 +143,7 @@
                 <header>
                     <button name="validate" states="draft" string="Confirmar" type="object" class="oe_highlight"/>
                     <button type="object" name="compute_depreciation_board" string="Calcular Amortización" states="draft"/>
+		   
                     <button name="set_to_close" states="open" string="Vender o Disponer" type="object" class="oe_highlight"/>
                     <button name="set_to_draft" string="Poner en Borrador" type="object" attrs="{'invisible': ['|', ('entry_count', '!=', 0), ('state', '!=', 'open')]}"/>
                     <button name="%(action_asset_modify)d" states="open" string="Modificar Amortización" type="action"/>
@@ -187,10 +188,10 @@
                         <page string="Tablero de Amortización">
                             <field name="depreciation_line_ids" mode="tree" options="{'reload_whole_on_button': true}">
                                 <tree string="Depreciation Lines" decoration-info="(move_check == False)" create="false">
-                                    <field name="depreciation_date" string="Fecha de Amortización" />
-                                    <field name="amount" widget="monetary" string="Amortización"/>
+                                    <field name="depreciation_date" string="Fecha de Vencimientos" />
+                                    <field name="amount" widget="monetary" string="Pagos"/>
                                     <field name="depreciated_value" string="Amortización Acumulada" readonly="1"/>
-                                    <field name="remaining_value" readonly="1" widget="monetary" string="Residual"/>
+                                    <field name="remaining_value" readonly="1" widget="monetary" string="Saldo"/>
                                     <field name="move_check" string="Vinculada"  widget="deprec_lines_toggler" attrs="{'invisible': [('parent_state', '!=', 'open')]}"/>
                                     <field name="move_posted_check" invisible="1"/>
                                     <field name="parent_state" invisible="1"/>

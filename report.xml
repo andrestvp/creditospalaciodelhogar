@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="report_amortizacion" model="ir.actions.report">
+        <field name="name">Tablero de Amortización</field>
+        <field name="model">account.asset.asset</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account.asset.asset.report_amortizacion</field>
+        <field name="report_file">account.asset.asset.report_amortizacion</field>
+        <field name="binding_model_id" ref="model_account_asset_asset"/>
+        <field name="binding_type">report</field>         
+    </record>
+
+
+  
+
+
+
+</odoo>

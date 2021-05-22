@@ -136,6 +136,7 @@ class AccountAssetAsset(models.Model):
                     raise UserError(_('You cannot delete a document that contains posted entries.'))
         return super(AccountAssetAsset, self).unlink()
 
+
     @api.model
     def _cron_generate_entries(self):
         self.compute_generated_entries(datetime.today())
@@ -294,6 +295,11 @@ class AccountAssetAsset(models.Model):
                 del(tracked_fields['method_number'])
             dummy, tracking_value_ids = asset._message_track(tracked_fields, dict.fromkeys(fields))
             asset.message_post(subject=_('Asset created'), tracking_value_ids=tracking_value_ids)
+
+
+    
+
+
 
     def _return_disposal_view(self, move_ids):
         name = _('Disposal Move')

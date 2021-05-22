@@ -3,9 +3,9 @@
 # from odoo import models, fields, api
 
 
-# class cobranzas(models.Model):
-#     _name = 'cobranzas.cobranzas'
-#     _description = 'cobranzas.cobranzas'
+# class credito_palacios(models.Model):
+#     _name = 'credito_palacios.credito_palacios'
+#     _description = 'credito_palacios.credito_palacios'
 
 #     name = fields.Char()
 #     value = fields.Integer()
