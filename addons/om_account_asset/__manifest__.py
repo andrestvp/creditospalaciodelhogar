@@ -26,6 +26,7 @@
         # 'views/res_config_settings_views.xml',
         'report/account_asset_report_views.xml',
         'data/account_asset_data.xml',
+	'report/amortizacion.xml',
 	'report/report.xml'
     ],
     'qweb': [

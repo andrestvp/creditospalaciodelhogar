@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "credito",
+    'name': "credito_palacios",
 
     'summary': """
-        MOdulo de Credito - Encargado del proceso de revision y aprobacion Crediticia""",
+        Short (1 phrase/line) summary of the module's purpose, used as
+        subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Se encargara de la operatividad de credito , dentro del proceso de ventas.
+        Long description of module's purpose
     """,
 
-    'author': "	Credito Palacio del Hogar",
-    'website': "http://www.palaciodelhogar.com",
+    'author': "My Company",
+    'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Inventory',
-    'version': '1.0',
+    'category': 'Uncategorized',
+    'version': '0.1',
 
     # any module necessary for this one to work correctly
     'depends': ['base'],
@@ -31,6 +32,4 @@
     'demo': [
         'demo/demo.xml',
     ],
-   'application ': True
-   'autoinstallable': True
 }

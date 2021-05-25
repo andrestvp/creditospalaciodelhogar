@@ -3,9 +3,9 @@
 # from odoo import models, fields, api
 
 
-# class credito(models.Model):
-#     _name = 'credito.credito'
-#     _description = 'credito.credito'
+# class credito_palacios(models.Model):
+#     _name = 'credito_palacios.credito_palacios'
+#     _description = 'credito_palacios.credito_palacios'
 
 #     name = fields.Char()
 #     value = fields.Integer()
@@ -16,13 +16,3 @@
 #     def _value_pc(self):
 #         for record in self:
 #             record.value2 = float(record.value) / 100
-
-from odoo import models, fields, api
-
-class  credito(models.MOdel):
-    _name = 'credito.credito'
-    _descripcion = 'credito.credito'
-
-    name = fields.Char(string, required = True)
-
-
