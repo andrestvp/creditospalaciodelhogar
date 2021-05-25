@@ -178,7 +178,7 @@
                             <field name="value" string="Valor Bruto"  widget="monetary" options="{'currency_field': 'currency_id'}" help="Valor bruto del activo"/>
                             <field name="salvage_value" string="Valor de Rescate"  widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('type','=','sale')]}"/>
                             <field name="value_residual" string="Valor Residual"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="partner_id" string="Vendedor" widget="res_partner_many2one"
+                            <field name="partner_id" string="Cliente" widget="res_partner_many2one"
                                    context="{'res_partner_search_mode': 'supplier'}"/>
                             <field name="invoice_id" string="Factura" options="{'no_create': True}"/>
                             <field name="analytic_tag_ids" string="Etiqueta"  groups="analytic.group_analytic_accounting" widget="many2many_tags"/>
