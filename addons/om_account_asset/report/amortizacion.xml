@@ -4,27 +4,42 @@
     
 
 
+
     <template id="report_amortizacion_card">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="doc">
                     <t t-call="web.external_layout">
                         <div class="page">
                             <h2> Financiamiento </h2>
+
                             <div class="row mt32 mb32" id="informations">
                                 <div t-if="doc.name" class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Referencia:</strong>
+                                    <strong>Referencia</strong>
                                     <p class="m-0" t-field="doc.name"/>
                                 </div>
                                 <div t-if="doc.name" class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Fecha:</strong>
+                                    <strong>Fecha</strong>
                                     <p class="m-0" t-field="doc.date"/>
                                 </div>
 
                                 <div t-if="doc.name" class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Asesor Comercial:</strong>
+                                    <strong>Asesor Comercial</strong>
                                     <p class="m-0" t-field="doc.partner_id"/>
                                 </div>
                             </div>
+
+                            
+
+                            <table class="table table-sm o_main_table">
+                                    <thead style="display: table-row-group">
+                                            <tr>
+                                                <th name="th_fecha" class="text-left">Fecha de Vencimiento</th>
+                                                <th name="th_pagos" class="text-right">Pagos</th>
+                                                <th name="th_acumulada" class="text-right">Amortización Acumulada</th>
+                                                <th name="th_saldo" class="text-right">Saldo</th>
+                                            </tr>
+                                    </thead>
+                            </table>
 
 
                         </div>
@@ -32,6 +47,7 @@
                 </t>
             </t>
     </template>
+
 
 
 </odoo>
