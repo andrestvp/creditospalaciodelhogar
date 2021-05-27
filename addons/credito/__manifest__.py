@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "credito_palacios",
+    'name': "credito",
 
     'summary': """
-        Modulo orientado a la gestion de credito""",
+        Modulo Gestion de Credito""",
 
     'description': """
-        Sistema de Gestion Crediticia 
+        MOdulo para la gestion y revision Crediticia
     """,
 
     'author': "Credito Palacio del Hogar",
-    'website': "http://www.creditopalaciodelhogar.com",
+    'website': "http://www.palaciodelhogar.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -19,7 +19,7 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'sale'],
 
     # always loaded
     'data': [
@@ -31,7 +31,8 @@
     'demo': [
         'demo/demo.xml',
     ],
+   'application':True,
+   'installable':True,
+   'auto_install':False
 
-	'application':True
-	'auto_installable':True
 }

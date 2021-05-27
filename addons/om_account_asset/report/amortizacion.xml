@@ -3,26 +3,38 @@
 
 
 
+
+
     <template id="report_amortizacion_card">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="doc">
                     <t t-call="web.external_layout">
+
+
+
+                        <div class="row mt32 mb32" id="informations">
+                            <div t-if="doc.invoice_id" class="offset-8" >
+                                <strong>Factura de Venta</strong>
+                                <p class="m-0" t-field="doc.invoice_id"/>
+
+                            </div>
+                        </div>
 
                         <div class="page">
                             <h2> Financiamiento </h2>
 
                             <div class="row mt32 mb32" id="informations">
                                 <div t-if="doc.name" class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Referencia</strong>
+                                    <strong>Referencia:</strong>
                                     <p class="m-0" t-field="doc.name"/>
                                 </div>
                                 <div t-if="doc.name" class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Fecha</strong>
+                                    <strong>Fecha:</strong>
                                     <p class="m-0" t-field="doc.date"/>
                                 </div>
 
                                 <div t-if="doc.name" class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Cliente</strong>
+                                    <strong>Cliente:</strong>
                                     <p class="m-0" t-field="doc.partner_id"/>
                                 </div>
                             </div>
@@ -55,6 +67,7 @@
                             <div class="row mt32 mb32" id="signature">
                                 <div class="offset-8" >
                                     <strong>Firma Cliente</strong>
+				    <p class="m-0" t-field="doc.partner_id"/>
                                 </div>
                             </div>
 

@@ -332,7 +332,7 @@
                             </div>
                             <field name="date_order" attrs="{'required': [('state', 'in', ['sale', 'done'])], 'invisible': [('state', 'in', ['draft', 'sent'])]}" nolabel="1"/>
                             <field name="show_update_pricelist" invisible="1"/>
-                            <label for="pricelist_id" string="Plazo de Pagos" groups="product.group_product_pricelist"/>
+                            <label for="pricelist_id" groups="product.group_product_pricelist"/>
                             <div groups="product.group_product_pricelist" class="o_row">
                                 <field name="pricelist_id" options="{'no_open':True,'no_create': True}"/>
                                 <button name="update_prices" type="object"
@@ -343,7 +343,7 @@
                                     attrs="{'invisible': ['|', ('show_update_pricelist', '=', False), ('state', 'in', ['sale', 'done','cancel'])]}"/>
                             </div>
                             <field name="currency_id" invisible="1"/>
-                            <field name="payment_term_id" invisible="1"  options="{'no_open':True,'no_create': True}"/>
+                            <field name="payment_term_id" options="{'no_open':True,'no_create': True}"/>
                         </group>
                     </group>
                     <notebook>
@@ -566,7 +566,6 @@
                                         domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
                                         attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
                                         optional="show"
-					string="Iva"
                                     />
                                     <field name="discount" string="Disc.%" groups="product.group_discount_per_so_line" optional="show" widget="product_discount"/>
                                     <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
@@ -646,10 +645,10 @@
                                     <field name="note" nolabel="1" placeholder="Terms and conditions..."/>
                                 </group>
                                 <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
-                                    <field name="amount_untaxed" string="Valor sin Iva"  widget='monetary' options="{'currency_field': 'currency_id'}"/>
-                                    <field name="amount_tax" string="Iva"  widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
                                     <div class="oe_subtotal_footer_separator oe_inline o_td_label">
-                                        <label for="amount_total" string="Subtotal" />
+                                        <label for="amount_total" />
                                     </div>
                                     <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
                                 </group>

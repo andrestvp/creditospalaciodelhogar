@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.tabla</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+
+
+                <header>
+                    <button type="object" name="action_test" string="Mostrar Amortización"/>
+                </header>
+                
+                <field name="payment_term_id" position="after">
+                    <field name="entrada" help="Se recomienda ingresar el 10% del valor del producto"/>
+                </field>
+
+                <field name="amount_total" position="after">
+                    <field name="amount_entrada" string="Entrada (-)" readonly="1"/>
+                </field>
+                <field name="amount_entrada" position="after" class="oe_subtotal_footer_separator oe_inline o_td_label">
+                    <field name="total" string="Total" readonly="1" class="oe_subtotal_footer_separator"/>
+                </field>
+
+
+            </field>
+
+        </record>
+    </data>
+</odoo>
