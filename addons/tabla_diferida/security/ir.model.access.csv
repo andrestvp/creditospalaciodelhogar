@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_tabla_diferida_tabla_diferida,tabla_diferida.tabla_diferida,model_tabla_diferida_tabla_diferida,base.group_user,1,1,1,1
+access_create_appointment_wizard,access.create.appointment.wizard,model_create_appointment_wizard,,1,1,1,1
