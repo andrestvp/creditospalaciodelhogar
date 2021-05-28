@@ -7,11 +7,11 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
 
-
-
-                <header>
-                    <button type="action" name="%(tabla_diferida.create_appointment_wizard)d" string="Mostrar Amortización"/>
+		 <header>
+                    <button type="object" name="action_test" string="Mostrar Amortización"/>
                 </header>
+
+
                 
                 <field name="payment_term_id" position="after">
                     <field name="entrada" help="Se recomienda ingresar el 10% del valor del producto"/>

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
++# -*- coding: utf-8 -*-
 {
     'name': "TablaDiferida",
 
@@ -24,8 +24,8 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+
         'views/sale_order_views.xml',
-        'wizard/amortizacion.xml', 
     ],
     # only loaded in demonstration mode
     'demo': [
