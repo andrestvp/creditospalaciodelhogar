@@ -1,26 +1,61 @@
-<?xml version="1.0" enconding="utf8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-     <record id="create_appointment_form" model="ir.ui.view">
-        <field name="name">create.appointment.wizard.form</field>
-        <field name="model">create.appointment.wizard</field>
+
+     <record id="create_wizard_form" model="ir.ui.view">
+        <field name="name">visualiza.amortizacion.wizard</field>
+        <field name="model">visualiza.amortizacion</field>
         <field name="arch" type="xml">
             <form string="Crete">
+                <sheet>
                     <group class="oe_title">
-                            <field name="ejemplo"/>
+                            <field name="totalpagar" string="El total a pagar es: " readonly="1"/>
+                            <field name="mes" string="Número de Meses: " readonly="1"/>
+                            <field name="cuota" string="Valor por Cuotas: " readonly="1"/>
+
+
                     </group>
+                    <notebook >
+                        <page string="Tabla de Amortización">
+                            <field name="amor_id" mode="tree">
+                                <tree >
+                                    <field name="numero"/>
+                                    <field name="fecha"/>
+                                    <field name="pagos"/>
+                                     <field name="amortizacion"/>
+                                    <field name="interes"/>
+                                    <field name="capital"/>
+                                    <field name="saldo"/>
+                                    <field name="detalle"/>
+
+
+                                </tree>
+                            </field>
+                              
+                          
+                        </page>
+                        <page string="Observación">
+                            <group>
+                                <field name="observacion"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+
                     <footer>
+                        <button string="Imprimir" type="object" name="imprimir"/>
                         <button string="Cancelar" class="btn-secondary" special="cancel"/>
+
                     </footer>
             </form>
         </field>
     </record>
 
-    <record id="action_create_appointment" model="ir.actions.act_window">
-        <field name="name">Create Appointment</field>
-        <field name="type">ir.actions.act.window</field>
-        <field name="res_model">create.appointment.wizard</field>
+    <record id="create_wizard" model="ir.actions.act_window">
+        <field name="name">Visualización de Amortizaciones</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">visualiza.amortizacion</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="create_appointment_form"></field>
+        <field name="view_id" ref="create_wizard_form"></field>
         <field name="target">new</field>
     </record>
 </odoo>

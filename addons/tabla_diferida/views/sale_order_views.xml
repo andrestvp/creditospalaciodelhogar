@@ -10,7 +10,7 @@
 
 
                 <header>
-                    <button type="action" name="%(tabla_diferida.create_appointment_wizard)d" string="Mostrar Amortización"/>
+                    <button type="action" name="%(tabla_diferida.create_wizard)d" string="Mostrar Amortización"/>
                 </header>
                 
                 <field name="payment_term_id" position="after">

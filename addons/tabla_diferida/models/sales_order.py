@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
 
 
     def action_test(self):
-        raise UserError('Holaaaaa')
+        raise UserError('Holaaaaa y')
 
 
     @api.depends('order_line.price_total')

@@ -19,13 +19,14 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','sale'],
+    'depends': ['sale'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/sale_order_views.xml',
+        'security/ir.model.access.csv',
         'wizard/amortizacion.xml', 
+
+        'views/sale_order_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
